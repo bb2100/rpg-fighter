@@ -9,7 +9,7 @@ class Character:
     def __str__(self) -> str:
         return f"Name: {self.name}\nHealth: {self.health}\nAttack: {self.attack}\nArmor: {self.armor}"
     
-    def attack(self):
+    def damage(self):
         return self.attack
     
     def take_damage(self, damage):
