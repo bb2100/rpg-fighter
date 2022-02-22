@@ -54,10 +54,14 @@ class Goblin:
 
 
 
-def save_character(char : Character):
-    name, health, attack, armor = char.get_attributes()
-    save_string = f"{name}/{health}/{attack}/{armor}\n"
-    with open("saved_characters.txt", "a", encoding="utf8") as f:
+def save_character(chars : list()):
+    save_list = []
+    for character in chars:
+        name, health, attack, armor = character.get_attributes()
+        save_string = f"{name}/{health}/{attack}/{armor}\n"
+        save_list.append(save_string)
+
+    with open("saved_characters.txt", "w", encoding="utf8") as f:
         f.write(save_string)
         print(f"{name} has been successfully saved.")
 
@@ -67,9 +71,9 @@ def load_characters():
         for line in f.readlines():
             attributes = line.split("/")
             char = Character(attributes[0],
-                             attributes[1],
-                             attributes[2],
-                             attributes[3])
+                             int(attributes[1]),
+                             int(attributes[2]),
+                             int(attributes[3]))
             
             characters.append(char)
     return characters
