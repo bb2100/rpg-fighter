@@ -1,5 +1,5 @@
 import resources
-from resources import Character, Goblin, save_character, load_characters
+from resources import Character, Goblin, save_character, load_characters, create_character
 from random import randint, shuffle, choice
 
 def fight(players : list, enemies : list):
@@ -33,6 +33,17 @@ def fight(players : list, enemies : list):
 if __name__ == "__main__":
     enemies = []
     players = load_characters()
+
+    print("Do you want to create new characters?")
+    create_new = input("(y/n)")
+    if(create_new.lower() == "y"):
+        how_many = int(input("How many characters do you want to create?"))
+        for i in range(how_many):
+            players.append(create_character())
+
+    amount_of_goblins = int(input("How many goblins do you want to fight?"))
+    for i in range(amount_of_goblins):
+        enemies.append(Goblin(randint(10, 15), randint(0, 2), i+1))
 
     #emy = Character("Emy", 20, 5, 2)
     #nick = Character("nick", 15, 2, 1)

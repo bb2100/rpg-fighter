@@ -1,3 +1,24 @@
+# imports
+from random import randint, choice
+
+# global variables
+
+
+#classes
+class Weapon:
+    def __init__(self, name, damage) -> None:
+        self.name = name
+        self.damage = damage
+    
+    def get_damage(self):
+        return self.damage
+
+ # Bryter mot standard
+GOBLIN_WEAPONS = [Weapon("Rusty Cleaver", 2),
+                  Weapon("Rusty Spear", 3),
+                  Weapon("Stone Axe", 1)]
+
+
 class Character:
     
     def __init__(self, name, health, attack, armor):
@@ -34,6 +55,8 @@ class Goblin:
         self.attack = attack
         self.armor = armor
         self.id = id
+        self.weapon = choice(GOBLIN_WEAPONS)
+        self.attack = self.weapon.get_damage()
 
     def __str__(self) -> str:
         return f"Goblin #{self.id}\nHealth: {self.health}\nAttack: {self.attack}\nArmor: {self.armor}"
@@ -77,3 +100,17 @@ def load_characters():
             
             characters.append(char)
     return characters
+
+def create_character():
+    print("Welcome to the character creator!")
+    name = input("What is your character called?:")
+    health = randint(10, 30)
+    attack = randint(1,5)
+    armor = randint(0,5)
+
+    return_char = Character(name, health, attack, armor)
+
+    print()
+    print(return_char)
+    print("Character has been created")
+    return return_char
